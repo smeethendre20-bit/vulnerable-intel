@@ -10,7 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 api_key = os.getenv("GROQ_API_KEY")
-client = Groq(api_key=api_key)
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+client = Groq(api_key=api_key) if api_key else None
 
 METASPLOIT_PASSWORD = "kali"
 
@@ -87,9 +88,12 @@ def run_searchsploit(keyword):
 
 # Function to query Groq API
 def ask_ai_api(query):
+    if client is None:
+        print("Set GROQ_API_KEY to enable Groq AI.")
+        return None
     try:
         completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=GROQ_MODEL,
             messages=[
                 {"role": "system", "content": "You are an AI assistant helping a pentester in a chatbot api can you respond in less than 5 sentances."},
                 {"role": "user", "content": query}

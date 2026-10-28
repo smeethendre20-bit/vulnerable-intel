@@ -16,9 +16,10 @@ Requires Python 3.10 or later.
 
    ```env
    GROQ_API_KEY=your_groq_api_key
+   GROQ_MODEL=openai/gpt-oss-120b
    ```
 
-   The local database search, NIST CVE lookups, and web interface work without a key. Groq enables generative explanations; the public NIST NVD database provides CVE and product-version search as the no-key alternative. SearchSploit is also optional; install it separately if you want its local exploit index.
+   The app defaults to Groq model `openai/gpt-oss-120b`; set `GROQ_MODEL` only if you want to use another currently supported Groq model. Free-tier requests are limited by Groq rate limits. The local database search, NIST CVE lookups, and web interface work without a key. Groq enables generative explanations; the public NIST NVD database provides CVE and product-version search as the no-key alternative. SearchSploit is also optional; install it separately if you want its local exploit index.
 
 3. Start the app from this folder:
 

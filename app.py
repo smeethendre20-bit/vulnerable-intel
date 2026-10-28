@@ -17,6 +17,7 @@ app = Flask(__name__, static_url_path='', static_folder=os.path.join(BASE_DIR, '
 
 # Configure Groq client using environment variable
 api_key = os.getenv("GROQ_API_KEY")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 if not api_key:
     print("WARNING: GROQ_API_KEY not found. AI features will be disabled.")
     client = None
@@ -174,7 +175,7 @@ def ask_ai_deep_search(query):
     
     try:
         completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=GROQ_MODEL,
             messages=[
                 {"role": "system", "content": "You are a vulnerability research expert returning raw JSON data."},
                 {"role": "user", "content": prompt}
@@ -250,7 +251,7 @@ def ask_ai_api(query):
         return "Local database matches are ready. For an exact CVE lookup, switch to AI Search; it uses public NVD data without an API key."
     try:
         completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model=GROQ_MODEL,
             messages=[
                 {"role": "system", "content": "You are an AI assistant helping a pentester in a chatbot api can you respond in less than 5 sentances."},
                 {"role": "user", "content": query}
