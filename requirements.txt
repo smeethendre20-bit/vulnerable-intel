@@ -1,0 +1,8 @@
+flask
+pandas
+thefuzz
+python-Levenshtein
+groq
+python-dotenv
+requests
+gunicorn

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1220">
+    <meta name="description" content="Search vulnerability intelligence across Metasploit and SSTI datasets.">
+    <title>VulnChatBot — Vulnerability Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar for context or future features -->
+        <aside class="sidebar">
+            <div class="logo nav-logo">
+                <i class="fa-solid fa-shield-halved shield-icon" style="font-size: 2rem; animation: none;"></i>
+                <h2 class="logo-text">m8a8a8y-Bot</h2>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="active"><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+                <a href="#" id="ai-search-link"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Search</a>
+                <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Status: <span class="status-indicator"></span> Online</p>
+                <p class="small">Local datasets · Groq AI optional</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Vulnerability Intelligence</h1>
+                <p>Search across Metasploit, Exploit-DB, and SSTI payloads.</p>
+            </header>
+
+            <div class="chat-container">
+                <div class="messages" id="messages-container">
+                    <div class="message system-msg">
+                        <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                        <div class="msg-content">
+                            <p>Welcome to VulnChatBot. Search a keyword such as <strong>apache</strong>, <strong>windows</strong>, or <strong>ssh</strong> to explore the included security datasets.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-area">
+                    <div class="input-wrapper">
+                        <input type="text" id="query-input" placeholder="Enter keyword (e.g., windows, ssh, apache)..." autocomplete="off">
+                        <button id="send-btn" class="btn btn-primary" style="padding: 0; width: 3.5rem; border-radius: 0.5rem;"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right panel for raw data results -->
+        <aside class="results-panel">
+            <div class="results-header">
+                <h3><i class="fa-solid fa-database"></i> Database Matches</h3>
+            </div>
+            <div class="results-content" id="results-content">
+                <div class="empty-state">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <p>Run a search to see raw results here.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Templates for JavaScript rendering -->
+    <template id="result-section-template">
+        <div class="result-section">
+            <h4 class="section-title"></h4>
+            <div class="section-items"></div>
+        </div>
+    </template>
+
+    <!-- Modal for displaying raw exploit code -->
+    <div id="code-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Exploit Code</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <pre><code id="modal-code">Loading...</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
